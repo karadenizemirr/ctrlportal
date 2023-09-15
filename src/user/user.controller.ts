@@ -24,7 +24,7 @@ export class UserController {
     }
 
     @Post('register')
-    @UseGuards(AuthGuard)
+    //@UseGuards(AuthGuard)
     async post_register(@Body() data:any){
         const register = await this.userService.register(data)
         return register
