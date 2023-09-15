@@ -1,0 +1,40 @@
+<style>
+    .card {
+        transition: all .3s ease-in-out;
+    }
+    .card:hover {
+        box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+    }
+    .card a {
+        color:black !important;
+        transition: all .3s ease-in-out;
+    }
+    .card a:hover {
+        background-color: #F7C35F !important;
+    }
+</style>
+<div class="container mt-4 mb-4">
+    <div class="row">
+        {{#each products}}
+        <div class="col-md-4">
+            <div class="card p-4">
+                <div class="card-title text-center">
+                    <h4>
+                        {{this.name}}
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <a href="">
+                        <img src="{{this.images}}" alt="" class="img-fluid">
+                    </a>
+                </div>
+                <div class="card-footer text-center bg-transparent">
+                    <a href="/product/{{this.id}}" class="btn btn-primary btn-sm bg-transparent border" style="width: 100%;">
+                        Get Detail
+                    </a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

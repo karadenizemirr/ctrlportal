@@ -1,0 +1,33 @@
+        <section class="page-header">
+            <div class="page-header__bg" style="background-image: url(/public/images/backgrounds/page-header-bg-1-1.jpg);"></div>
+            <!-- /.page-header__bg -->
+            <div class="container">
+                <ul class="thm-breadcrumb list-unstyled">
+                    <li><a href="/">Home</a></li>
+                </ul><!-- /.thm-breadcrumb list-unstyled -->
+                <h2>{{product.name}}</h2>
+            </div><!-- /.container -->
+        </section><!-- /.page-header -->
+
+        <section class="project-details">
+            <div class="container text-center">
+                <img src="{{product.images}}" class="img-fluid" alt="">
+
+                <h2>Description</h2>
+                {{{product.description}}}
+                <div class="bottom-content">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h3>Product Features</h3>
+                            {{{product.features}}}
+                        </div><!-- /.col-lg-6 -->
+                        <div class="col-lg-6">
+                            <div class="project-details__images">
+                                <img src="/public/images/projects/project-d-2-1.jpg" alt="">
+                                <img src="/public/images/projects/project-d-2-2.jpg" alt="">
+                            </div><!-- /.project-details__images -->
+                        </div><!-- /.col-lg-6 -->
+                    </div><!-- /.row -->
+                </div><!-- /.bottom-content -->
+            </div><!-- /.container -->
+        </section><!-- /.project-details -->

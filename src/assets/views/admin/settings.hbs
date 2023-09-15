@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="container mt-5 mb-5">
+        <div class="card">
+            <div class="card-title p-4 text-center">
+                <h3>
+                    Site Ayarları
+                </h3>
+            </div>
+            <div class="card-body">
+                <form action="/admin/settings" method="post">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Site Başlığı*" required name="title" autocomplete="off" value="{{settings.title}}">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Mail Adresi*" required name="email" autocomplete="off" value="{{settings.email}}">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Telefon Nu.*" required name="phone" autocomplete="off" value="{{settings.phone}}">
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Adres*" required name="address" autocomplete="off" value="{{settings.address}}">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Site Mesajı" required name="welcome_message" autocomplete="off" value="{{settings.welcome_message}}">
+                        </div>
+                    </div>
+                    <input type="text" hidden value="{{settings.id}}" name="id">
+                    <div class="row mb-4">
+                        <div class="col text-center">
+                            <button class="btn btn-success" type="submit">
+                                <i class="fas fa-save" style="margin-right: 10px;"></i>İşlemi Kaydet
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

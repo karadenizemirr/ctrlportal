@@ -1,0 +1,99 @@
+<div class="row">
+    <div class="container mt-5 mb-5">
+        <div class="card p-5">
+            <div class="card-title">
+                <h4>
+                    Kategori İşlemleri
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="button_group">
+                    <button class="btn btn-primary btn-sm mt-4 mb-4" id="open_category_button">
+                        Kategori Ekle
+                    </button>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Kategori Adı</th>
+                            <th scope="col">Eklenme Tarihi</th>
+                            <th scope="col">İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each categories}}
+                        <form action="/admin/category/update/{{this.id}}" method="post">
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="Kategori Adı" name="name"
+                                        value="{{this.name}}">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="Eklenme Tarihi" disabled
+                                        value="{{this.created_at}}">
+                                </td>
+                                <td>
+                                    <button type="submit" class="bg-transparent" style="border: none; color:blue">
+                                        <i class="fas fa-save" style="margin-right: 10px;"></i>
+                                    </button>
+                                    <a href="/admin/category/delete/{{this.id}}">
+                                        <i class="fas fa-times" style="maring-right: 10px"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </form>
+                        {{/each}}
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="add_category_modal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fs-5" id="exampleModalToggleLabel">Kategori Ekle</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <form id="add_category_form">
+                        <input type="text" class="form-control" placeholder="Kategori Adı" name="name">
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit">Kategori Ekle</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#open_category_button").click(function () {
+            $("#add_category_modal").modal("show");
+        })
+
+        $('#add_category_form').submit(function (e) {
+            e.preventDefault()
+
+            $.ajax({
+                url: '/admin/category',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function () {
+                    $("#add_category_modal").modal("hide");
+                    location.reload();
+                },
+            })
+        })
+
+
+    })
+</script>
