@@ -4,7 +4,7 @@ import { DataSource } from "typeorm";
 export const contactProvider = [
     {
         provide: 'CONTACT_REPOSITORY',
-        useFactory: (dataSource: DataSource) => dataSource.getRepository(Contact),
-        inject:'MYSQL_CONNECTION'
+        useFactory: (dataSource:DataSource) => dataSource.getRepository(Contact),
+        inject: ['MYSQL_CONNECTION']
     }
 ]

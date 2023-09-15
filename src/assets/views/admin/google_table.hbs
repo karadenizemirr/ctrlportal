@@ -1,0 +1,74 @@
+<div class="container-fluid mb-4 mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card p-4">
+                <div class="card-body">
+                    <table id="myTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>District</th>
+                                <th>Street</th>
+                                <th>Country</th>
+                                <th>Website</th>
+                                <th>Raiting</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each data}}
+                            <tr>
+                                <td>
+                                    {{this.name}}
+                                </td>
+                                <td>
+                                    {{this.phone_number}}
+                                </td>
+                                <td>
+                                    {{this.full_address}}
+                                </td>
+                                <td>
+                                    {{this.district}}
+                                </td>
+                                <td>
+                                    {{this.street_address}}
+                                </td>
+                                <td>
+                                    {{this.country}}
+                                </td>
+                                <td>
+                                    {{this.website}}
+                                </td>
+                                <td>
+                                    {{this.raiting}}
+                                </td>
+                            </tr>
+                            {{/each}}
+                            <!-- Diğer satırlar -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            responsive: true,
+            columnDefs:[
+            {
+                targets: 6,
+                render: function(data, type, row, meta){
+                    if (data.length > 20) {
+                        return '<a href="' + data + '" target="_blank">' + data.substr(0, 20) + '...</a>';
+                    } else {
+                        return '<a href="' + data + '" target="_blank">' + data + '</a>';
+                    }
+                }
+            }]
+        });
+    });
+</script>

@@ -1,8 +1,9 @@
 import { Body, Controller, Get, Post, Render } from "@nestjs/common";
+import { ContactService } from "./contact.service";
 
 @Controller('contact')
 export class ContactController {
-    constructor() {}
+    constructor(private contactService: ContactService) {}
 
     @Get()
     @Render('contact')
@@ -14,6 +15,8 @@ export class ContactController {
 
     @Post()
     async post_contat(@Body() data:any){
+        const result = await this.contactService.get_contact(data)
+        return result
     }
 
     

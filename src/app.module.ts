@@ -14,6 +14,7 @@ import { ContactModule } from './contact/contact.module';
 import { UserModule } from './user/user.module';
 import { JwtService } from './customService/jwt.service';
 import { LoginInterceptor } from './interceptors/login.interceptors';
+import { GoogleModule } from './google/google.module';
 
 @Global()
 @Module({
@@ -22,6 +23,7 @@ import { LoginInterceptor } from './interceptors/login.interceptors';
     SettingsAdminModule,
     ProductAdminModule,
     CategoryAdminModule,
+    GoogleModule,
     RouterModule.register([
       {
         path: 'admin',
@@ -38,6 +40,9 @@ import { LoginInterceptor } from './interceptors/login.interceptors';
       {
         path:'admin',
         module: UserModule
+      },{
+        path:'admin',
+        module: GoogleModule
       }
     ]),
     ProductModule,
