@@ -11,11 +11,11 @@ export const mysqlProviders = [
         useFactory: async () => {
             const dataSource = new DataSource({
                 type: 'mysql',
-                host: 'localhost',
+                host: 'eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
                 port: 3306,
-                username: 'root',
-                password: '123456789',
-                database: 'ceoks',
+                username: 'qf42x5fva9kbtie5',
+                password: 'wsnokb8xyk1n473x',
+                database: 'lukucuu6m6siq9eo',
                 entities: [
                     Settings,
                     Category,
