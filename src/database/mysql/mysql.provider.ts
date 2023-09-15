@@ -1,6 +1,7 @@
 import { Category } from "src/entity/category.entity"
 import { Product } from "src/entity/product.entity"
 import { Settings } from "src/entity/settings.entity"
+import { User } from "src/entity/user.entity"
 import { DataSource } from "typeorm"
 
 export const mysqlProviders = [
@@ -9,15 +10,16 @@ export const mysqlProviders = [
         useFactory: async () => {
             const dataSource = new DataSource({
                 type: 'mysql',
-                host: 'eyvqcfxf5reja3nv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+                host: 'localhost',
                 port: 3306,
-                username: 'qf42x5fva9kbtie5',
-                password: 'wsnokb8xyk1n473x',
-                database: 'lukucuu6m6siq9eo',
+                username: 'root',
+                password: '123456789',
+                database: 'ceoks',
                 entities: [
                     Settings,
                     Category,
-                    Product
+                    Product,
+                    User
                 ],
                 synchronize: true
             })

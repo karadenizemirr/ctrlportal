@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
@@ -11,7 +11,11 @@ import { CategoryAdminModule } from './category/admin/category.admin.module';
 import { DataInterceptor } from './interceptors/data.interceptors';
 import { ProductModule } from './products/product.module';
 import { ContactModule } from './contact/contact.module';
+import { UserModule } from './user/user.module';
+import { JwtService } from './customService/jwt.service';
+import { LoginInterceptor } from './interceptors/login.interceptors';
 
+@Global()
 @Module({
   imports: [
     DatabaseModule,
@@ -30,18 +34,29 @@ import { ContactModule } from './contact/contact.module';
       {
         path: 'admin',
         module: CategoryAdminModule
+      },
+      {
+        path:'admin',
+        module: UserModule
       }
     ]),
     ProductModule,
     CategoryModule,
-    ContactModule
+    ContactModule,
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService,
   {
     provide:APP_INTERCEPTOR,
     useClass:DataInterceptor
-  }],
-  exports: []
+  },
+  {
+    provide: APP_INTERCEPTOR,
+    useClass:LoginInterceptor
+  },
+  JwtService
+],
+  exports: [JwtService]
 })
 export class AppModule {}

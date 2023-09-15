@@ -1,11 +1,13 @@
 import { FileInterceptor, MemoryStorageFile, UploadedFile } from "@blazity/nest-file-fastify";
-import { Body, Controller, Get, Param, Post, Render, Res, UseInterceptors } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Render, Res, UseGuards, UseInterceptors } from "@nestjs/common";
 import { CategoryService } from "src/category/category.service";
 import {v4 as uuid4} from 'uuid'
 import { ProductService } from "../product.service";
 import { Response } from "express";
+import { AuthGuard } from "src/guard/auth.guard";
 
 @Controller('product')
+@UseGuards(AuthGuard)
 export class ProductAdminController {
     constructor(private categoryService: CategoryService, private productService: ProductService) {}
 

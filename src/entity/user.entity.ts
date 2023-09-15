@@ -18,8 +18,8 @@ export class User {
     @Column()
     email: string
 
-    @Column()
-    isActive:string
+    @Column({default: true})
+    isActive:boolean
 
     @Column()
     password:string
