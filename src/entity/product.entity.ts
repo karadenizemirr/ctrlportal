@@ -9,10 +9,10 @@ export class Product {
     @Column()
     name: string
 
-    @Column()
+    @Column({type:'varchar', length: 500})
     description: string
 
-    @Column()
+    @Column({type:'varchar', length: 500})
     features: string
 
     @Column()

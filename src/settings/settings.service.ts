@@ -10,13 +10,15 @@ export class SettingsService {
 
     async create_settings(data:any){
         try{
-            if (data.id){
+            if (data && data.id.length > 0){
                 const update = await this.settingsRepository.update(data.id, data)
                 return update
             }
+            delete data.id
             const save = await this.settingsRepository.save(data)
             return save
         }catch(err){
+            console.log(err)
             throw new HttpException('Create settings error', HttpStatus.BAD_REQUEST)
         }
     }

@@ -73,4 +73,13 @@ export class ProductService {
             throw new HttpException('Get product by id error', HttpStatus.BAD_GATEWAY)
         }
     }
+
+    async update_product(id:number, data:any){
+        try{
+            console.log(data)
+        }catch(err){
+            console.log(err)
+            throw new HttpException('Update product error', HttpStatus.BAD_GATEWAY)
+        }
+    }
 }
