@@ -19,7 +19,7 @@ export class GoogleService {
                 verified: true
             }
             const headers= {
-                'X-RapidAPI-Key': '507e4109a3msh25f08b98981bc80p1c4617jsn1377f3c2656d',
+                'X-RapidAPI-Key': '74263f0bb2msh9c075b993eeb786p18bc7fjsn9685c70d3e7e',
                 'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
             }
             
