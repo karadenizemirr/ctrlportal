@@ -34,4 +34,10 @@ export class GoogleControler {
             data: data
         }
     }
+
+    @Get('delete-all')
+    async get_delete_all(@Res() res:Response): Promise<void>{
+        await this.googleService.delete_all()
+        res.redirect(302, '/admin/google/table')
+    }
 }

@@ -8,21 +8,21 @@ import { Repository } from "typeorm";
 export class GoogleService {
     constructor(
         @Inject('GOOGLE_REPOSITORY') private googleRepository: Repository<Google>
-    ) {}
+    ) { }
 
-    async search_company(query:string){
-        try{
+    async search_company(query: string) {
+        try {
             const base_url = "https://local-business-data.p.rapidapi.com/search"
             const params = {
                 query: query,
                 limit: 500,
                 verified: true
             }
-            const headers= {
+            const headers = {
                 'X-RapidAPI-Key': '74263f0bb2msh9c075b993eeb786p18bc7fjsn9685c70d3e7e',
                 'X-RapidAPI-Host': 'local-business-data.p.rapidapi.com'
             }
-            
+
             const options = {
                 method: 'GET',
                 url: base_url,
@@ -33,16 +33,16 @@ export class GoogleService {
             const req = await axios.request(options)
             const data = req.data.data
 
-            for (const d of data){
+            for (const d of data) {
                 const control = await this.googleRepository.findOne(
                     {
-                        where:{
+                        where: {
                             name: d['name']
                         }
                     }
                 )
 
-                if (!control){
+                if (!control) {
                     const google = new Google()
                     google.name = d['name'] || ''
                     google.phone_number = d['phone_number'] || ''
@@ -54,26 +54,40 @@ export class GoogleService {
                     google.street_address = d['street_address'] || ''
                     google.city = d['city'] || ''
                     google.country = d['country'] || ''
-    
+
                     await this.googleRepository.save(google)
                 }
             }
 
             return true
-            
-        }catch(err){
+
+        } catch (err) {
             console.log(err)
             throw new HttpException('Company search error', HttpStatus.BAD_GATEWAY)
         }
     }
 
-    async get_all(){
-        try{
-            const result = await this.googleRepository.find()
+    async get_all() {
+        try {
+            const result = await this.googleRepository.find(
+                {
+                    order:{
+                        created_at: 'DESC'
+                    }
+                }
+            )
             return result
-        }catch(err){
-            console.log(err)
+        } catch (err) {
             throw new HttpException('Get all company error', HttpStatus.BAD_GATEWAY)
+        }
+    }
+
+    async delete_all() {
+        try {
+            const result = await this.googleRepository.delete({})
+            return result
+        } catch (err) {
+            return;
         }
     }
 }
