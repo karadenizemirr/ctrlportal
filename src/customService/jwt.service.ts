@@ -6,7 +6,7 @@ export class JwtService {
     private readonly secretKey = "ctrlportal"
 
     generate_token(payload:any){
-        return jwt.sign(payload,this.secretKey,{expiresIn:'1d'})
+        return jwt.sign(payload,this.secretKey,{expiresIn:'1h'})
     }
 
     verify_token(token:string){
